@@ -1,0 +1,1 @@
+# vsdiat_stripath
