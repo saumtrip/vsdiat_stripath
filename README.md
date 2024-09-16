@@ -16,6 +16,7 @@ Directory structure of openlane-
 ![image](https://github.com/user-attachments/assets/5342e097-3b26-4b4f-b18b-d86bcc73f323)
 
 Design setup stage- 
+
 ![image](https://github.com/user-attachments/assets/d177f8cb-55dd-486b-b2bf-a84a4a03a596)
 
 Command to run synthesis- run_synthesis
@@ -38,11 +39,13 @@ Flop ratio= Number of flip flops/Number of cells
 -Lower priority is given to system default (floorplanning.tcl), the next priority is given to config.tcl and then priority is given to PDK varient.tcl (sky130A_sky130_fd_sc_hd_congig.tcl).
 
 -This is how floorplan def looks like-
+
 ![image](https://github.com/user-attachments/assets/bf4d9d9a-7e66-4a9b-adff-8b69c8996d6d)
 
 ![image](https://github.com/user-attachments/assets/5dac3c12-0d7a-4a21-9478-2b144f108c58)
 
 -Standard cell placement view- 
+
 ![image](https://github.com/user-attachments/assets/45136dec-a76a-4725-89fc-3298234a0a3a)
 
 
@@ -63,6 +66,7 @@ Flop ratio= Number of flip flops/Number of cells
 ![image](https://github.com/user-attachments/assets/59f93f36-62a9-4767-8602-f149e9123326)
 
 -Spice deck- 
+
 ![image](https://github.com/user-attachments/assets/0c2c20a6-9bb5-4d3b-9580-cc4fcd39f04e)
 
 -Visual representation of spice deck for reference- 
@@ -74,6 +78,7 @@ Flop ratio= Number of flip flops/Number of cells
 ![image](https://github.com/user-attachments/assets/6c6c5480-7f06-49b1-9629-d80d8c0683af)
 
 -After running spice-
+
 ![image](https://github.com/user-attachments/assets/b4ad77c2-018e-43d2-b938-4e5b21fe595b)
 
 -Plot for y vs time- 
@@ -101,6 +106,7 @@ Flop ratio= Number of flip flops/Number of cells
 ![image](https://github.com/user-attachments/assets/ba03f592-5368-4e52-b8f5-59b4cd9b59e8)
 
 We can set values and parameters for different ports etc. 
+
 ![image](https://github.com/user-attachments/assets/414d6de5-4ffa-41c1-91ab-d987aeb465d4)
 
 -Configure synthesis settings to fix slack and include vsdinv-
