@@ -71,10 +71,10 @@ Flop ratio= Number of flip flops/Number of cells
 
 - Include lib files for pshort and nshort in spice deck-
   
-  ![image](https://github.com/user-attachments/assets/6c6c5480-7f06-49b1-9629-d80d8c0683af)
+![image](https://github.com/user-attachments/assets/6c6c5480-7f06-49b1-9629-d80d8c0683af)
 
 -After running spice-
-  ![image](https://github.com/user-attachments/assets/b4ad77c2-018e-43d2-b938-4e5b21fe595b)
+![image](https://github.com/user-attachments/assets/b4ad77c2-018e-43d2-b938-4e5b21fe595b)
 
 -Plot for y vs time- 
 
@@ -83,14 +83,71 @@ Flop ratio= Number of flip flops/Number of cells
 -Fixing tech file violations-
 
 ![image](https://github.com/user-attachments/assets/a3a71ab1-bf90-4d15-af6a-358ebc8106c6)
+
 ![image](https://github.com/user-attachments/assets/06e0fd07-d796-4a8c-888e-600cb1ddfa9e)
 
 ![image](https://github.com/user-attachments/assets/302a8147-0f7c-4893-9b8e-93ec47e997c3)
 
 # Day 4 - Pre-layout timing analysis and importance of good clock tree
 
--Mag viewer- 
+-Mag viewer-
+
 ![image](https://github.com/user-attachments/assets/0d6c01fe-c239-4877-9a92-dfa87b012e2f)
+
+-Help grid command in tkcon window will write command according to track file required
+
+![image](https://github.com/user-attachments/assets/f81e490a-b113-42a8-b41b-9ece2c18b6a7)
+
+![image](https://github.com/user-attachments/assets/ba03f592-5368-4e52-b8f5-59b4cd9b59e8)
+
+We can set values and parameters for different ports etc. 
+![image](https://github.com/user-attachments/assets/414d6de5-4ffa-41c1-91ab-d987aeb465d4)
+
+-Configure synthesis settings to fix slack and include vsdinv-
+
+We will give the following commmands in the terminal in openlane directory
+
+prep -design picorv32a -tag 01-04_12-54 -overwrite
+
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+
+add_lefs -src $lefs
+
+echo $::env(SYNTH_STRATEGY)
+
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+
+echo $::env(SYNTH_BUFFERING)
+
+echo $::env(SYNTH_SIZING)
+
+set ::env(SYNTH_SIZING) 1
+
+echo $::env(SYNTH_DRIVING_CELL)
+
+run_synthesis
+
+prep -design picorv32a -tag 01-04_12-54 -overwrite is used to overwrite the existing files with previous values of simulations.
+
+After synthesis, we have observed that the slack is nagative.
+
+wns(worst negative slack)= -23.89
+
+tns(total negative slack)= -711.59.
+
+-Now we run_synthesis and run_floorplan to see the effect of changes made on the chip area and slack value. 
+
+-Commands for floorplan:
+init_floorplan
+place_io
+tap_decap_or
+
+Then, run_placement
+
+![image](https://github.com/user-attachments/assets/17ebf9b5-2a65-4f99-bd5e-b1d6e869392f)
+
+
+
 
 
 
