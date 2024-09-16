@@ -147,12 +147,87 @@ Then, run_placement
 ![image](https://github.com/user-attachments/assets/17ebf9b5-2a65-4f99-bd5e-b1d6e869392f)
 
 
+-Configuring OpenSTA for post-synth timing analysis-
+ Run synthesis using the following commands in openlane directory-
+ 
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+set ::env(SYNTH_SIZING) 1
+run_synthesis
+
+![image](https://github.com/user-attachments/assets/3026838c-823c-4564-87ec-ba0d0cab947c)
+
+-Make a new pre_sta.conf file now- 
+
+![image](https://github.com/user-attachments/assets/0f0c0a91-2816-49da-a57f-0996e7861fff)
+
+-my_base.sdc file defining environment variables:
+
+![image](https://github.com/user-attachments/assets/10e2cfe8-9fdb-4297-90f7-b03d010a4bdb)
+
+-Execute the sta pre_sta.conf command:
+
+![image](https://github.com/user-attachments/assets/3d89f013-f0fa-4874-a30b-94d43b05c6ba)
 
 
 
+## Optimize synthesis to reduce setup violations-
+
+prep -design picorv32a -tag 02-04_05-27 -overwrite
+
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+
+add_lefs -src $lefs
+
+set ::env(SYNTH_SIZING) 1
+
+set ::env(SYNTH_MAX_FANOUT) 4
+
+echo $::env(SYNTH_DRIVING_CELL)
+
+run_synthesis
+
+-Now, run the sta pre_sta.conf command in a new terminal in openlane directory itself,
+
+![image](https://github.com/user-attachments/assets/a327af75-a308-40a7-94fc-f230aa501f81)
+
+## Run CTS using Triton
+-Floorplan, synthesis, CTS: 
+
+![image](https://github.com/user-attachments/assets/d4789592-493b-4ca8-ad92-bbb366306a15)
+
+![image](https://github.com/user-attachments/assets/4e3cf956-9fd9-48c3-9ad6-e10ec1aff62e)
+
+![image](https://github.com/user-attachments/assets/ddefcb28-2ba7-4355-a158-3005d13bb0aa)
+
+
+-To Generate the custom timing report
+
+report_checks -fields {net cap slew input_pins} -digits 4
+
+![image](https://github.com/user-attachments/assets/833c2499-f442-4ba3-b317-fd2531054876)
+
+![image](https://github.com/user-attachments/assets/473081a7-268b-450d-8e8a-8aaa49f07427)
 
 
 # Day 5 - Final steps for RTL2GDS using tritonRoute and openSTA
+
+## Building power distribution network
+
+-gen_pdn 
+
+![image](https://github.com/user-attachments/assets/f78d20ef-955c-4950-8de7-fa65dceea542)
+
+-The final generated layout looks like this:
+
+![image](https://github.com/user-attachments/assets/e23f8122-3da9-4480-a767-f86ae3bc1df9)
+
+
+
 
 
 
